@@ -140,6 +140,27 @@
             background-color: #1d4ed8;
         }
 
+        .map-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            margin: 1rem 0;
+            border-radius: 8px;
+            border: 1px solid #334155;
+        }
+
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
         .tag {
             background-color: #065f46;
             color: #a7f3d0;
@@ -189,7 +210,7 @@
                 <span class="day-date">Jan 6</span>
             </div>
             <strong>Arrival & Setup</strong>
-            <p>Land at New Chitose Airport, collect 4WD Rental #1. Road trip to our winter base in Otaru or stay in Sapporo. Feast on local seafood and prep gear.</p>
+            <p>Land at New Chitose Airport, collect 4WD Rental #1. Road trip to our winter base in Otaru. Feast on local seafood and prep gear.</p>
         </div>
 
         <div class="day-card">
@@ -199,7 +220,7 @@
             </div>
             <strong>Sapporo Kokusai <span class="tag">Warm-Up</span></strong>
             <p>Insane snow reliability and deep lift-accessed tree lanes. Perfect spot to shake off the jetlag.</p>
-            <a href="https://sapporo-kokusai.jp" target="_blank" class="resort-link">View Mountain Site ↗</a>
+            <a href="https://www.sapporo-kokusai.jp/" target="_blank" class="resort-link">View Mountain Site ↗</a>
         </div>
 
         <div class="day-card">
@@ -209,7 +230,7 @@
             </div>
             <strong>Rusutsu Resort <span class="tag">The Main Event</span></strong>
             <p>Locking in a massive day of tree-runs, pillow drops, and deep stashes without the wild Niseko crowds.</p>
-            <a href="https://rusutsu.com/trail-map/" target="_blank" class="resort-link">View Mountain Site ↗</a>
+            <a href="https://www.rusutsu.co.jp/" target="_blank" class="resort-link">View Mountain Site ↗</a>
         </div>
 
         <div class="day-card">
@@ -219,10 +240,10 @@
             </div>
             <strong>Asarigawaonsen <span class="tag offbeat">Off the Beaten Track</span></strong>
             <p>Quiet local hill hit by storms straight off the Sea of Japan. Ride down the mountain with full panoramic ocean views.</p>
-            <a href="https://asarigawa-ski.com" target="_blank" class="resort-link">View Mountain Site ↗</a>
+            <a href="https://www.asarigawa-ski.com/" target="_blank" class="resort-link">View Mountain Site ↗</a>
         </div>
 
-        <!-- LEG 2 -->
+        <!-- TRANSITION -->
         <div class="leg-title">🚄 The Great Shinkansen Crossing</div>
         
         <div class="day-card">
@@ -234,7 +255,7 @@
             <p>Drop Car #1 at airport. Rocket under the ocean via the Shinkansen straight to Morioka Station. Pick up 4WD Car #2. Dinner: Morioka Reimen noodles and wagyu beef.</p>
         </div>
 
-        <!-- LEG 3 -->
+        <!-- LEG 2 -->
         <div class="leg-title">🏔️ Leg 2: Iwate & Yamagata Backcountry</div>
         
         <div class="day-card">
@@ -244,7 +265,7 @@
             </div>
             <strong>Appi Kogen <span class="tag">The Aspen of Japan</span></strong>
             <p>Cruisy groomers but specifically targeting their 5 massive, dedicated off-piste tree zones.</p>
-            <a href="https://appi-japan.com" target="_blank" class="resort-link">View Mountain Site ↗</a>
+            <a href="https://www.appi-japan.com/" target="_blank" class="resort-link">View Mountain Site ↗</a>
         </div>
 
         <div class="day-card">
@@ -254,7 +275,7 @@
             </div>
             <strong>Geto Kogen <span class="tag offbeat">King of Snow</span></strong>
             <p>A geographic snow trap. Massive terrain park and 14 technical tree-run zones full of natural features.</p>
-            <a href="https://getokogen.com" target="_blank" class="resort-link">View Mountain Site ↗</a>
+            <a href="https://www.getokogen.com/winter/" target="_blank" class="resort-link">View Mountain Site ↗</a>
         </div>
 
         <div class="day-card">
@@ -264,7 +285,7 @@
             </div>
             <strong>Shimokura <span class="tag offbeat">Secret Powder</span></strong>
             <p>Retro single-lift vibe with 'ultra-dry' diamond dust snow and steep, uncrowded faces.</p>
-            <a href="https://hachimantai.co.jp" target="_blank" class="resort-link">View Mountain Site ↗</a>
+            <a href="https://www.hachimantai.co.jp/winter/shimokura/" target="_blank" class="resort-link">View Mountain Site ↗</a>
         </div>
 
         <div class="day-card">
@@ -283,4 +304,48 @@
             </div>
             <strong>Zao Onsen <span class="tag">Snow Monsters</span></strong>
             <p>Two days of riding massive interconnected terrain, cruising past the frozen Juhyo (Snow Monsters), and hot spring recovery.</p>
-            <a href="https://zao-ski.or.jp" target="_blank" class="resort-link">View Mountain Site ↗</a>
+            <a href="https://www.zao-ski.or.jp/" target="_blank" class="resort-link">View Mountain Site ↗</a>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-badge">Day 12</span>
+                <span class="day-date">Jan 17</span>
+            </div>
+            <strong>Nekoma Mountain <span class="tag offbeat">Local Microclimate</span></strong>
+            <p>1-hour morning drive south into the Aizu region. North-facing resort with super light snow and brilliant lift-accessed sidecountry.</p>
+            <a href="https://www.nekoma.co.jp/" target="_blank" class="resort-link">View Mountain Site ↗</a>
+        </div>
+
+        <!-- TOKYO FINALE -->
+        <div class="leg-title">🌆 Leg 3: The Tokyo Finale</div>
+        
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-badge">Day 13</span>
+                <span class="day-date">Jan 18</span>
+            </div>
+            <strong>The Road to Tokyo</strong>
+            <p>4-hour drive down to a Tokyo city transit hub (such as Ueno or an airport depot). Drop Car #2 off, head out for a massive final night of Izakayas, craft beer, and sushi.</p>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-badge">Day 14</span>
+                <span class="day-date">Jan 19</span>
+            </div>
+            <strong>Flight Home</strong>
+            <p>Last minute shopping/sightseeing before heading to the airport. Trip complete!</p>
+        </div>
+
+        <!-- GOOGLE MAP INTEGRATION SECTION -->
+        <div class="leg-title">🗺️ Interactive Road Trip Route</div>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Explore the full journey across Japan, from our Hokkaido tracks down to Honshu and Tokyo.</p>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m48!1m12!1m3!1d3080536.853381657!2d138.83159346045582!3d39.0601955375549!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m33!3m2!1d43.1907!2d140.9947!4m5!1s0x5f8f3bde0a2a4b87%3A0x6e9f658d53ebbd07!2sMorioka%20Station%2C%20Morioka%2C%20Iwate!3m2!1d39.7015566!2d141.1365851!4m5!1s0x5f8f041ffea22df1%3A0xe53046f882f0c7a5!2sAppi%20Kogen%20Ski%20Resort%2C%20Hachimantai%2C%20Iwate!3m2!1d40.0016149!2d140.971036!4m5!1s0x5f8f7c9e0d16d10f%3A0xad5fc9cb13fbb544!2sGeto%20Kogen%20Resort%2C%20Kitakami%2C%20Iwate!3m2!1d39.2155702!2d140.8988674!4m5!1s0x5f8bb3c233c70f61%3A0xbccf06746960cf1c!2sZao%20Onsen%20Ski%20Resort%2C%20Yamagata!3m2!1d38.1646278!2d140.3957262!4m5!1s0x605d1b7454f7a555%3A0xf639893d19ba7145!2sTokyo%20Station%2C%20Chiyoda%20City%2C%20Tokyo!3m2!1d35.6812362!2d139.7671248!5e0!3m2!1sen!2sau!4v1710000000000!5m2!1sen!2sau" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+    </div>
+
+</body>
+</html>
