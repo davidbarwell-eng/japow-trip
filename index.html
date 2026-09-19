@@ -111,7 +111,7 @@
             <h4 class="stay-title">Otaru / Sapporo Winter Base</h4>
             <p class="stay-details">Check-in: Jan 6 | Status: Pending Booking</p>
           </div>
-          <button class="stay-btn" onclick="alert('Stay details & drawer coming in Step 3!')">View Stay Hub</button>
+          <button class="stay-btn" onclick="openDrawer('otaru')">View Stay Hub</button>
         </div>
 
         <div class="day-card">
@@ -165,7 +165,7 @@
             <h4 class="stay-title">Morioka Hub</h4>
             <p class="stay-details">Check-in: Jan 10 | Status: Pending Booking</p>
           </div>
-          <button class="stay-btn" onclick="alert('Stay details & drawer coming in Step 3!')">View Stay Hub</button>
+          <button class="stay-btn" onclick="openDrawer('morioka')">View Stay Hub</button>
         </div>
         
         <!-- LEG 2 -->
@@ -221,7 +221,7 @@
             <h4 class="stay-title">Zao Onsen Traditional Ryokan</h4>
             <p class="stay-details">Check-in: Jan 14 | Hot Springs & Kaiseki Dinner Included</p>
           </div>
-          <button class="stay-btn" onclick="alert('Stay details & drawer coming in Step 3!')">View Stay Hub</button>
+          <button class="stay-btn" onclick="openDrawer('zao')">View Stay Hub</button>
         </div>
         
         <div class="day-card">
@@ -263,7 +263,7 @@
             <h4 class="stay-title">Tokyo Transit Hub</h4>
             <p class="stay-details">Check-in: Jan 18 | Near Ueno / Airport Express Line</p>
           </div>
-          <button class="stay-btn" onclick="alert('Stay details & drawer coming in Step 3!')">View Stay Hub</button>
+          <button class="stay-btn" onclick="openDrawer('tokyo')">View Stay Hub</button>
         </div>
         
         <div class="day-card">
@@ -342,6 +342,34 @@
         </div>
 
     </div>
+<!-- Slide-Out Overlay -->
+    <div id="drawer-overlay" class="drawer-overlay" onclick="closeDrawer()"></div>
 
+    <!-- Slide-Out Drawer -->
+    <aside id="stay-drawer" class="stay-drawer" aria-hidden="true">
+        <div class="drawer-header">
+            <h3 id="drawer-title">Stay Details</h3>
+            <button class="drawer-close-btn" onclick="closeDrawer()">&times;</button>
+        </div>
+        <div class="drawer-content">
+            <div class="drawer-badge" id="drawer-dates">Dates</div>
+            <p id="drawer-description" class="drawer-desc"></p>
+            
+            <div class="drawer-section">
+                <h4>📍 Location & Address</h4>
+                <p id="drawer-address">Address details pending...</p>
+            </div>
+
+            <div class="drawer-section">
+                <h4>🔑 Booking Info</h4>
+                <ul id="drawer-info-list" class="drawer-list">
+                    <!-- Populated via JS -->
+                </ul>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Connect JS file -->
+    <script src="script.js"></script>
 </body>
 </html>
