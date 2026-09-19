@@ -1,11 +1,11 @@
-// HUB DATA SOURCE
+// UPDATED 5-HUB DATABASE
 const hubData = {
   sapporo: {
     region: "Hokkaido",
     title: "Sapporo / Otaru Hub",
     accommodation: {
       dates: "Jan 6 – Jan 10 (4 Nights)",
-      desc: "Coastal powder base positioned between Otaru Canal and the powder resorts of Sapporo Kokusai, Rusutsu, and Asarigawa.",
+      desc: "Coastal powder base positioned between Otaru Canal and powder resorts like Sapporo Kokusai, Rusutsu, and Asarigawa.",
       address: "Otaru Station Area, Otaru, Hokkaido 047-0032",
       info: [
         "Check-in: Jan 6, 2027 (15:00)",
@@ -82,12 +82,12 @@ const hubData = {
     region: "Yamagata / Tohoku",
     title: "Zao Onsen Village Hub",
     accommodation: {
-      dates: "Jan 14 – Jan 17 (3 Nights)",
+      dates: "Jan 14 – Jan 16 (2 Nights)",
       desc: "Slope-side Ryokan in a 1,900-year-old hot spring village nestled in Mount Zao.",
       address: "Zao Onsen Village, Yamagata 990-2301",
       info: [
         "Check-in: Jan 14, 2027 (15:00)",
-        "Check-out: Jan 17, 2027 (10:00)",
+        "Check-out: Jan 16, 2027 (10:00)",
         "Meals: Breakfast & Kaiseki Dinner included",
         "Onsen: 24h Volcanic Sulfur Bath"
       ]
@@ -95,7 +95,7 @@ const hubData = {
     food: [
       {
         name: "Zao Jingisukan (Genghis Khan Lamb BBQ)",
-        note: "Local grilled lamb on a convex iron griddle. Perfect after a cold day in the mountains.",
+        note: "Local grilled lamb on a convex iron griddle. Perfect after a cold day on the mountain.",
         map: "https://maps.google.com/?q=Zao+Onsen+Jingisukan"
       }
     ],
@@ -111,88 +111,83 @@ const hubData = {
         map: "https://maps.google.com/?q=Zao+Dairotenburo"
       }
     ]
+  },
+  aizu: {
+    region: "Fukushima / Tohoku",
+    title: "Aizu / Urabandai Hub",
+    accommodation: {
+      dates: "Jan 16 – Jan 17 (1 Night)",
+      desc: "Lake-side base situated right at the foot of Mount Bandai for fast early-morning tracks at Nekoma Mountain.",
+      address: "Urabandai / Aizu-Wakamatsu, Fukushima 966-0401",
+      info: [
+        "Check-in: Jan 16, 2027 (15:00)",
+        "Check-out: Jan 17, 2027 (10:00)",
+        "Distance to Slopes: 15 mins to Nekoma Mountain",
+        "Status: Booking Pending"
+      ]
+    },
+    food: [
+      {
+        name: "Kitakata Ramen Village",
+        note: "Famous soy sauce broth ramen with thick, flat curly noodles—one of Japan's top three ramen styles.",
+        map: "https://maps.google.com/?q=Kitakata+Ramen+Aizu"
+      },
+      {
+        name: "Aizu Sauce Katsudon",
+        note: "Crispy fried pork cutlet dipped in sweet/savory Worcestershire-style sauce over rice.",
+        map: "https://maps.google.com/?q=Aizu+Sauce+Katsudon"
+      }
+    ],
+    highlights: [
+      {
+        name: "Nekoma Mountain (Hoshino Resorts)",
+        note: "Premier micro-climate powder bowl on the north face of Mount Bandai.",
+        map: "https://maps.google.com/?q=Nekoma+Mountain"
+      },
+      {
+        name: "Tsuruga Castle (Aizu-Wakamatsu)",
+        note: "Famous samurai castle with red-tiled roof surrounded by snow gardens.",
+        map: "https://maps.google.com/?q=Tsuruga+Castle"
+      }
+    ]
+  },
+  tokyo: {
+    region: "Kanto / Tokyo",
+    title: "Tokyo City Finale Hub",
+    accommodation: {
+      dates: "Jan 17 – Jan 19 (2 Nights)",
+      desc: "Central city transit base with quick direct access to Haneda Airport for the flight home.",
+      address: "Shinjuku / Ginza / Ueno Area, Tokyo",
+      info: [
+        "Check-in: Jan 17, 2027 (15:00)",
+        "Check-out: Jan 19, 2027 (10:00)",
+        "Airport Transit: ~30 mins via Tokyo Monorail / Keikyu Line to HND",
+        "Status: Booking Pending"
+      ]
+    },
+    food: [
+      {
+        name: "Omoide Yokocho (Memory Lane Shinjuku)",
+        note: "Atmospheric narrow alleyway packed with tiny yakitori stalls and local izakayas.",
+        map: "https://maps.google.com/?q=Omoide+Yokocho+Tokyo"
+      },
+      {
+        name: "Tsukiji Outer Market",
+        note: "Morning street food stop for fresh sashimi, tamagoyaki (egg omelets), and wagyu skewers.",
+        map: "https://maps.google.com/?q=Tsukiji+Outer+Market"
+      }
+    ],
+    highlights: [
+      {
+        name: "teamLab Planets Tokyo",
+        note: "Immersive digital art museum where you walk through water and light installations.",
+        map: "https://maps.google.com/?q=teamLab+Planets+Tokyo"
+      },
+      {
+        name: "Shibuya Crossing & Shibuya Sky",
+        note: "Iconic scramble intersection and open-air rooftop observatory over the Tokyo skyline.",
+        map: "https://maps.google.com/?q=Shibuya+Sky"
+      }
+    ]
   }
 };
-
-// DRAWER & TAB CONTROLLER
-let activeHub = null;
-
-function openHubDrawer(hubId) {
-  const hub = hubData[hubId];
-  if (!hub) return;
-
-  activeHub = hub;
-
-  // Header Data
-  document.getElementById("drawer-region-tag").innerText = hub.region;
-  document.getElementById("drawer-title").innerText = hub.title;
-
-  // Tab 1: Accommodation Data
-  document.getElementById("drawer-dates").innerText = hub.accommodation.dates;
-  document.getElementById("drawer-acc-desc").innerText = hub.accommodation.desc;
-  document.getElementById("drawer-address").innerText = hub.accommodation.address;
-
-  const accList = document.getElementById("drawer-acc-list");
-  accList.innerHTML = "";
-  hub.accommodation.info.forEach(item => {
-    const li = document.createElement("li");
-    li.innerText = item;
-    accList.appendChild(li);
-  });
-
-  // Tab 2: Food & Drink Data
-  const foodList = document.getElementById("drawer-food-list");
-  foodList.innerHTML = "";
-  hub.food.forEach(item => {
-    foodList.appendChild(createItemCard(item));
-  });
-
-  // Tab 3: Culture & Highlights Data
-  const hlList = document.getElementById("drawer-highlights-list");
-  hlList.innerHTML = "";
-  hub.highlights.forEach(item => {
-    hlList.appendChild(createItemCard(item));
-  });
-
-  // Reset to first tab on open
-  switchTab("accommodation");
-
-  // Show Drawer
-  document.getElementById("hub-drawer").classList.add("active");
-  document.getElementById("drawer-overlay").classList.add("active");
-  document.getElementById("hub-drawer").setAttribute("aria-hidden", "false");
-}
-
-function createItemCard(item) {
-  const div = document.createElement("div");
-  div.className = "item-card";
-  div.innerHTML = `
-    <h5>${item.name}</h5>
-    <p>${item.note}</p>
-    <a href="${item.map}" target="_blank" class="map-link">📍 View on Google Maps ↗</a>
-  `;
-  return div;
-}
-
-function switchTab(tabName) {
-  // Update Tab Buttons
-  document.querySelectorAll(".tab-btn").forEach(btn => btn.classList.remove("active"));
-  // Find button based on onclick string
-  const activeBtn = Array.from(document.querySelectorAll(".tab-btn")).find(btn => btn.getAttribute("onclick").includes(tabName));
-  if (activeBtn) activeBtn.classList.add("active");
-
-  // Update Panels
-  document.querySelectorAll(".tab-panel").forEach(panel => panel.classList.remove("active"));
-  const activePanel = document.getElementById(`tab-${tabName}`);
-  if (activePanel) activePanel.classList.add("active");
-}
-
-function closeDrawer() {
-  document.getElementById("hub-drawer").classList.remove("active");
-  document.getElementById("drawer-overlay").classList.remove("active");
-  document.getElementById("hub-drawer").setAttribute("aria-hidden", "true");
-}
-
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeDrawer();
-});
