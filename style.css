@@ -1,0 +1,135 @@
+.flight-section {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0 16px;
+}
+
+.flight-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e0e6ed;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.flight-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #f0f4f8;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+}
+
+.flight-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1a2b4c;
+  margin: 0;
+}
+
+.airline-tag {
+  background-color: #005a9c;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.leg-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.leg-item {
+  display: grid;
+  grid-template-columns: 100px 1fr 100px;
+  align-items: center;
+  text-align: center;
+}
+
+.time-location {
+  display: flex;
+  flex-direction: column;
+}
+
+.time {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.airport-code {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  font-weight: 600;
+}
+
+.route-graphic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.flight-number {
+  font-size: 0.75rem;
+  color: #005a9c;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.line-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.line {
+  height: 2px;
+  background-color: #cbd5e1;
+  width: 100%;
+}
+
+.plane-icon {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  padding: 0 4px;
+  font-size: 0.85rem;
+}
+
+.duration {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+.layover-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  color: #475569;
+  font-weight: 500;
+  margin: 4px 0;
+}
+
+@media (max-width: 600px) {
+  .leg-item {
+    grid-template-columns: 80px 1fr 80px;
+  }
+  .time { font-size: 1rem; }
+}
