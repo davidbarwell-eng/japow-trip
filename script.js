@@ -191,3 +191,98 @@ const hubData = {
     ]
   }
 };
+
+// ==========================================
+// DRAWER & TAB CONTROL FUNCTIONS
+// ==========================================
+
+function openHubDrawer(hubKey) {
+  const data = hubData[hubKey];
+  if (!data) return;
+
+  // 1. Populate Drawer Header & Tag
+  document.getElementById("drawer-region-tag").textContent = data.region;
+  document.getElementById("drawer-title").textContent = data.title;
+
+  // 2. Populate Accommodation Tab
+  document.getElementById("drawer-dates").textContent = data.accommodation.dates;
+  document.getElementById("drawer-acc-desc").textContent = data.accommodation.desc;
+  document.getElementById("drawer-address").textContent = data.accommodation.address;
+
+  const accList = document.getElementById("drawer-acc-list");
+  accList.innerHTML = "";
+  data.accommodation.info.forEach(item => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    accList.appendChild(li);
+  });
+
+  // 3. Populate Food & Drink Tab
+  const foodContainer = document.getElementById("drawer-food-list");
+  foodContainer.innerHTML = "";
+  data.food.forEach(item => {
+    foodContainer.innerHTML += `
+      <div class="item-card">
+        <h5>${item.name}</h5>
+        <p>${item.note}</p>
+        <a href="${item.map}" target="_blank" class="map-link">View on Google Maps ↗</a>
+      </div>
+    `;
+  });
+
+  // 4. Populate Culture & Highlights Tab
+  const highlightsContainer = document.getElementById("drawer-highlights-list");
+  highlightsContainer.innerHTML = "";
+  data.highlights.forEach(item => {
+    highlightsContainer.innerHTML += `
+      <div class="item-card">
+        <h5>${item.name}</h5>
+        <p>${item.note}</p>
+        <a href="${item.map}" target="_blank" class="map-link">View on Google Maps ↗</a>
+      </div>
+    `;
+  });
+
+  // 5. Reset to Accommodation Tab on Open
+  switchTab("accommodation");
+
+  // 6. Show Drawer and Overlay
+  document.getElementById("hub-drawer").classList.add("active");
+  document.getElementById("drawer-overlay").classList.add("active");
+  document.getElementById("hub-drawer").setAttribute("aria-hidden", "false");
+}
+
+function closeDrawer() {
+  document.getElementById("hub-drawer").classList.remove("active");
+  document.getElementById("drawer-overlay").classList.remove("active");
+  document.getElementById("hub-drawer").setAttribute("aria-hidden", "true");
+}
+
+function switchTab(tabName) {
+  // Hide all tab panels
+  const panels = document.querySelectorAll(".tab-panel");
+  panels.forEach(panel => panel.classList.remove("active"));
+
+  // Deactivate all tab buttons
+  const buttons = document.querySelectorAll(".tab-btn");
+  buttons.forEach(btn => btn.classList.remove("active"));
+
+  // Activate selected panel
+  const activePanel = document.getElementById(`tab-${tabName}`);
+  if (activePanel) {
+    activePanel.classList.add("active");
+  }
+
+  // Highlight active button
+  const activeButton = Array.from(buttons).find(btn =>
+    btn.getAttribute("onclick") && btn.getAttribute("onclick").includes(tabName)
+  );
+  if (activeButton) {
+    activeButton.classList.add("active");
+  }
+}
+
+// Close drawer with Escape key
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeDrawer();
+});
