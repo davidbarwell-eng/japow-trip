@@ -345,31 +345,54 @@
 <!-- Slide-Out Overlay -->
     <div id="drawer-overlay" class="drawer-overlay" onclick="closeDrawer()"></div>
 
-    <!-- Slide-Out Drawer -->
-    <aside id="stay-drawer" class="stay-drawer" aria-hidden="true">
+    <!-- Tabbed Hub Drawer -->
+    <aside id="hub-drawer" class="hub-drawer" aria-hidden="true">
         <div class="drawer-header">
-            <h3 id="drawer-title">Stay Details</h3>
+            <div>
+                <span id="drawer-region-tag" class="tag">Region</span>
+                <h3 id="drawer-title">Hub Name</h3>
+            </div>
             <button class="drawer-close-btn" onclick="closeDrawer()">&times;</button>
         </div>
+
+        <!-- Navigation Tabs -->
+        <div class="drawer-tabs">
+            <button class="tab-btn active" onclick="switchTab('accommodation')">🏠 Accommodation</button>
+            <button class="tab-btn" onclick="switchTab('food')">🍜 Food & Drink</button>
+            <button class="tab-btn" onclick="switchTab('highlights')">🏔️ Culture & Highlights</button>
+        </div>
+
         <div class="drawer-content">
-            <div class="drawer-badge" id="drawer-dates">Dates</div>
-            <p id="drawer-description" class="drawer-desc"></p>
-            
-            <div class="drawer-section">
-                <h4>📍 Location & Address</h4>
-                <p id="drawer-address">Address details pending...</p>
+            <!-- TAB 1: ACCOMMODATION -->
+            <div id="tab-accommodation" class="tab-panel active">
+                <div class="drawer-badge" id="drawer-dates">Dates</div>
+                <p id="drawer-acc-desc" class="drawer-desc"></p>
+                
+                <div class="drawer-section">
+                    <h4>📍 Address & Location</h4>
+                    <p id="drawer-address" class="drawer-info-text"></p>
+                </div>
+
+                <div class="drawer-section">
+                    <h4>🔑 Booking & Details</h4>
+                    <ul id="drawer-acc-list" class="drawer-list"></ul>
+                </div>
             </div>
 
-            <div class="drawer-section">
-                <h4>🔑 Booking Info</h4>
-                <ul id="drawer-info-list" class="drawer-list">
-                    <!-- Populated via JS -->
-                </ul>
+            <!-- TAB 2: FOOD & DRINK -->
+            <div id="tab-food" class="tab-panel">
+                <p class="drawer-desc">Top dining, izakaya, and après-ski recommendations in this hub area:</p>
+                <div id="drawer-food-list" class="cards-stack"></div>
+            </div>
+
+            <!-- TAB 3: CULTURE & HIGHLIGHTS -->
+            <div id="tab-highlights" class="tab-panel">
+                <p class="drawer-desc">Onsens, scenic spots, and cultural stops nearby:</p>
+                <div id="drawer-highlights-list" class="cards-stack"></div>
             </div>
         </div>
     </aside>
 
-    <!-- Connect JS file -->
     <script src="script.js"></script>
 </body>
 </html>
