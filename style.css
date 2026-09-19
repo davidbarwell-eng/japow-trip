@@ -174,8 +174,7 @@
 /* Flight & General Section Container */
 .flight-section {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  max-width: 900px;
-  margin: 20px auto;
+  width: 100%;
   padding: 0;
 }
 
