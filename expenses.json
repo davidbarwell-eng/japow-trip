@@ -8,5 +8,15 @@
     "subsidyAUD": 200,
     "splitRule": "Subsidized Split",
     "dateAdded": "2026-01-05"
+  },
+  {
+    "id": 1789876245143,
+    "description": "",
+    "category": "",
+    "amountAUD": 0,
+    "paidBy": "",
+    "subsidyAUD": 0,
+    "splitRule": "",
+    "dateAdded": "2026-09-20"
   }
 ]
