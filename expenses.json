@@ -8,15 +8,5 @@
     "subsidyAUD": 200,
     "splitRule": "Subsidized Split",
     "dateAdded": "2026-01-05"
-  },
-  {
-    "id": 1789880284134,
-    "description": "Sapporo domestic flights",
-    "category": "Flights",
-    "amountAUD": 0,
-    "paidBy": "Dave",
-    "subsidyAUD": 0,
-    "splitRule": "Equal 3-Way Split",
-    "dateAdded": "2026-09-20"
   }
 ]
