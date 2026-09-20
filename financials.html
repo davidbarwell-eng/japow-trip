@@ -70,7 +70,7 @@
   <script>
 
 // Replace with your published Google Sheet CSV URL
-const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/1ocFlxKg-aEcO5uDMl-DCMS9260cg0gkTP17u0wHkN24/edit?usp=drivesdk';
+const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ8gWbAmXFbhHzS0OGwBxS8YTPNJu1SUfsZk_wJICRWUYGH5723e3OEkMdA49HHX3StgNM34wEELfoL/pub?gid=981506514&single=true&output=csv';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Check if we are on the financials page (table exists)
@@ -131,7 +131,7 @@ function processAndRenderExpenses(rows) {
     if (splitRule.toLowerCase().includes('equal 3-way') || splitRule.toLowerCase().includes('equal')) {
       const perRiderShare = netAmountToSplit / 3;
       if (!paidBy.toLowerCase().includes('rider 2')) rider2OwedTotal += perRiderShare;
-      if (!paidBy.toLowerCase().includes('rider 3')) rider3OwedTotal += perRiderShare;
+      if (!paidBy.toLowerCase'().includes('rider 3')) rider3OwedTotal += perRiderShare;
     } else if (splitRule.toLowerCase().includes('subsidized') || splitRule.toLowerCase().includes('custom')) {
       // 50/50 split among Rider 2 & 3 after leader subsidy
       const perRiderShare = netAmountToSplit / 2;
