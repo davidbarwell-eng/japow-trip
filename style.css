@@ -646,3 +646,25 @@
   font-weight: 700;
   color: #ffffff;
 }
+
+#map {
+  height: 480px;
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  margin-top: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+/* Custom styling for dark mode popups */
+.leaflet-popup-content-wrapper {
+  background: #1a1f2c !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+.leaflet-popup-tip {
+  background: #1a1f2c !important;
+}
