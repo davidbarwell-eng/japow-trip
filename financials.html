@@ -114,9 +114,9 @@ function processAndRenderExpenses(rows) {
     const date = timestamp ? timestamp.split(' ')[0] : '-';
     const description = row['Expense Description'] || row['Description'] || '-';
     const category = row['Category'] || 'Misc';
-    const amount = parseFloat(row['Total Amount (AUD)']) || parseFloat(row['Amount']) || 0;
+    const amount = parseFloat(row['Total Amount']) || parseFloat(row['Amount']) || 0;
     const paidBy = row['Paid By'] || 'Dave';
-    const subsidy = parseFloat(row['Leader Subsidy (AUD)']) || parseFloat(row['Subsidy']) || 0;
+    const subsidy = parseFloat(row['Leader Subsidy']) || parseFloat(row['Subsidy']) || 0;
     const splitRule = row['Split Rule'] || 'Equal 3-Way Split';
 
     // Math calculations
