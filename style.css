@@ -607,3 +607,42 @@
   background: #38bdf8;
   color: #0f172a;
 }
+.snow-widget {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-top: 12px;
+  font-family: inherit;
+}
+
+.snow-widget-header {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #93c5fd; /* Soft blue highlight */
+  margin-bottom: 8px;
+}
+
+.snow-data {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+.snow-stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.snow-stat .label {
+  font-size: 0.75rem;
+  color: #9ca3af; /* Dim gray for titles */
+}
+
+.snow-stat .value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+}
