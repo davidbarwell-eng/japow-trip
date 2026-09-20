@@ -127,13 +127,18 @@ function processAndRenderExpenses(rows) {
     }
 
     // Balance calculations per rider
-    const netAmountToSplit = Math.max(0, amount - subsidy);
+    const paidByStr = String(paidBy || '').toLowerCase();
+    const splitRuleStr = String(splitRule || '').toLowerCase();
     
-    if (splitRule.toLowerCase().includes('equal 3-way') || splitRule.toLowerCase().includes('equal')) {
+    const validAmount = isNaN(amount) ? 0 : amount;
+    const validSubsidy = isNaN(subsidy) ? 0 : subsidy;
+    const netAmountToSplit = Math.max(0, validAmount - validSubsidy);
+    
+    if (splitRuleStr.includes('equal 3-way') || splitRuleStr.includes('equal')) {
       const perRiderShare = netAmountToSplit / 3;
-      if (!paidBy.toLowerCase().includes('rider 2')) rider2OwedTotal += perRiderShare;
-      if (!paidBy.toLowerCase().includes('rider 3')) rider3OwedTotal += perRiderShare;
-    } else if (splitRule.toLowerCase().includes('subsidized') || splitRule.toLowerCase().includes('custom')) {
+      if (!paidByStr.includes('rider 2')) rider2OwedTotal += perRiderShare;
+      if (!paidByStr.includes('rider 3')) rider3OwedTotal += perRiderShare;
+    } else if (splitRuleStr.includes('subsidized') || splitRuleStr.includes('custom')) {
       // 50/50 split among Rider 2 & 3 after leader subsidy
       const perRiderShare = netAmountToSplit / 2;
       rider2OwedTotal += perRiderShare;
