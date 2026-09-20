@@ -1,0 +1,88 @@
+name: Update Expenses Ledger
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  process-expense:
+    if: contains(github.event.issue.labels.*.name, 'expense')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Parse Issue and Update expenses.json
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            const issueBody = context.payload.issue.body;
+
+            // Helper to extract fields from issue body
+            function getFieldValue(label) {
+              const regex = new RegExp(`### ${label}\\s+\\n\\n([^\\n]+)`);
+              const match = issueBody.match(regex);
+              return match ? match.trim() : '';
+            }
+
+            const description = getFieldValue('Expense Description');
+            const category = getFieldValue('Category');
+            const amountAUD = parseFloat(getFieldValue('Total Amount \\(AUD\\)')) || 0;
+            const paidBy = getFieldValue('Paid By');
+            const subsidyAUD = parseFloat(getFieldValue('Leader Subsidy \\(AUD\\)')) || 0;
+            const splitRule = getFieldValue('Split Rule');
+
+            const newExpense = {
+              id: Date.now(),
+              description,
+              category,
+              amountAUD,
+              paidBy,
+              subsidyAUD,
+              splitRule,
+              dateAdded: new Date().toISOString().split('T')[0]
+            };
+
+            const filePath = './expenses.json';
+            let expenses = [];
+            if (fs.existsSync(filePath)) {
+              expenses = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+            }
+
+            expenses.push(newExpense);
+            fs.writeFileSync(filePath, JSON.stringify(expenses, null, 2));
+
+      - name: Commit and Push Updated expenses.json
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add expenses.json
+          git commit -m "chore: add expense from issue #${{ github.event.issue.number }}"
+          git push
+
+      - name: Close Issue Automatically
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: "✅ **Expense added to `expenses.json`!** The website dashboard will update automatically in a few moments."
+            });
+            github.rest.issues.update({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'closed'
+            });
