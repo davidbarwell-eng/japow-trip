@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "description": "Garuda Indonesia Return Flights",
+    "category": "Flights",
+    "amountAUD": 5340,
+    "paidBy": "Dave",
+    "subsidyAUD": 200,
+    "splitRule": "Subsidized Split",
+    "dateAdded": "2026-01-05"
+  }
+]
