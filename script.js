@@ -192,6 +192,29 @@ const hubData = {
   }
 };
 
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.snow-widget').forEach(widget => {
+    const lat = widget.getAttribute('data-lat');
+    const lon = widget.getAttribute('data-lon');
+
+    if (!lat || !lon) return;
+
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,snowfall,freezing_level_height&timezone=Asia%2FTokyo`;
+
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        if (data.current) {
+          widget.querySelector('.temp').textContent = Math.round(data.current.temperature_2m);
+          widget.querySelector('.snow').textContent = data.current.snowfall || 0;
+          widget.querySelector('.freezing').textContent = Math.round(data.current.freezing_level_height);
+        }
+      })
+      .catch(err => console.error('Error fetching snow data:', err));
+  });
+});
+
+
 // ==========================================
 // DRAWER & TAB CONTROL FUNCTIONS
 // ==========================================
