@@ -2,7 +2,7 @@ name: Update Expenses Ledger
 
 on:
   issues:
-    types: [opened, labeled]
+    types: [opened,labeled,unlabeled]
 
 jobs:
   process-expense:
