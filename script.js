@@ -212,6 +212,57 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .catch(err => console.error('Error fetching snow data:', err));
   });
+
+  // Initialize Leaflet Map
+const map = L.map('map').setView([39.5, 140.5], 6);
+
+// Load CartoDB Dark Matter map tiles
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; <a href="https://carto.com/">CARTO</a>',
+  subdomains: 'abcd',
+  maxZoom: 19
+}).addTo(map);
+
+// Define Base & Mountain Locations
+const locations = [
+  { name: 'Otaru / Sapporo Base', coords: [43.1907, 140.9947], type: 'base', note: 'Leg 1: Jan 6 - Jan 10' },
+  { name: 'Sapporo Kokusai', coords: [43.0722, 141.0805], type: 'resort', note: 'Day 2' },
+  { name: 'Rusutsu Resort', coords: [42.7483, 140.9038], type: 'resort', note: 'Day 3' },
+  { name: 'Asarigawaonsen', coords: [43.1558, 141.0372], type: 'resort', note: 'Day 4' },
+  { name: 'Morioka Hub', coords: [39.7036, 141.1527], type: 'base', note: 'Leg 2: Jan 10 - Jan 14' },
+  { name: 'Appi Kogen', coords: [39.9983, 140.9703], type: 'resort', note: 'Day 6' },
+  { name: 'Geto Kogen', coords: [39.2106, 140.9103], type: 'resort', note: 'Day 7' },
+  { name: 'Shimokura', coords: [39.9008, 140.9572], type: 'resort', note: 'Day 8' },
+  { name: 'Zao Onsen', coords: [38.1642, 140.3975], type: 'resort', note: 'Leg 3: Days 10 & 11' },
+  { name: 'Nekoma Mountain', coords: [37.6047, 140.0211], type: 'resort', note: 'Leg 3: Day 12' },
+  { name: 'Tokyo Transit Hub', coords: [35.7138, 139.7772], type: 'base', note: 'Leg 4: Jan 18 - Jan 19' }
+];
+
+// Add Markers
+locations.forEach(loc => {
+  const marker = L.circleMarker(loc.coords, {
+    radius: loc.type === 'base' ? 8 : 6,
+    fillColor: loc.type === 'base' ? '#3b82f6' : '#38bdf8',
+    color: '#ffffff',
+    weight: 2,
+    opacity: 1,
+    fillOpacity: 0.9
+  }).addTo(map);
+
+  marker.bindPopup(`<strong>${loc.name}</strong><br><span style="font-size:0.85rem; color:#9ca3af;">${loc.note}</span>`);
+});
+
+  // Draw Route Lines (Car Drives & Shinkansen)
+  const hokkaidoDrive = [[43.1907, 140.9947], [43.0722, 141.0805], [42.7483, 140.9038], [43.1558, 141.0372]];
+  const shinkansenTrain = [[43.1907, 140.9947], [39.7036, 141.1527]];
+  const tohokuDrive = [[39.7036, 141.1527], [39.9983, 140.9703], [39.9008, 140.9572], [39.2106, 140.9103], [38.1642, 140.3975], [37.6047, 140.0211], [35.7138, 139.7772]];
+  
+  // Blue solid line for driving legs
+  L.polyline(hokkaidoDrive, { color: '#3b82f6', weight: 3, opacity: 0.7 }).addTo(map);
+  L.polyline(tohokuDrive, { color: '#3b82f6', weight: 3, opacity: 0.7 }).addTo(map);
+  
+  // Dashed line for Shinkansen Train leg
+  L.polyline(shinkansenTrain, { color: '#f59e0b', weight: 3, dashArray: '6, 8', opacity: 0.9 }).addTo(map);
 });
 
 
