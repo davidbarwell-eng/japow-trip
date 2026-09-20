@@ -26,13 +26,14 @@ jobs:
         with:
           script: |
             const fs = require('fs');
-            const issueBody = context.payload.issue.body;
+            const issueBody = context.payload.issue.body || '';
 
-            // Helper to extract fields from issue body
-            function getFieldValue(label) {
-              const regex = new RegExp(`### ${label}\\s+\\n\\n([^\\n]+)`);
+            // Improved parser function for GitHub Issue Form Markdown
+            function getFieldValue(sectionHeader) {
+              // Regex looks for '### Section Header' and captures text until the next '###' header or end of file
+              const regex = new RegExp(`###\\s+${sectionHeader}\\s*\\n+([\\s\\S]*?)(?=\\n+###|$)`, 'i');
               const match = issueBody.match(regex);
-              return match ? match.trim() : '';
+              return match ? match[1].trim() : '';
             }
 
             const description = getFieldValue('Expense Description');
@@ -56,12 +57,15 @@ jobs:
             const filePath = './expenses.json';
             let expenses = [];
             if (fs.existsSync(filePath)) {
-              expenses = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+              try {
+                expenses = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+              } catch (e) {
+                expenses = [];
+              }
             }
 
             expenses.push(newExpense);
             fs.writeFileSync(filePath, JSON.stringify(expenses, null, 2));
-
       - name: Commit and Push Updated expenses.json
         run: |
           git config --global user.name "github-actions[bot]"
