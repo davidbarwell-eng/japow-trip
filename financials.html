@@ -68,41 +68,32 @@
   </main>
 
   <script>
-    // Fetch and render expenses from expenses.json
-    async function loadExpenses() {
-      try {
-        const response = await fetch('expenses.json');
-        const expenses = await response.json();
+const sheetCsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ8gWbAmXFbhHzS0OGwBxS8YTPNJu1SUfsZk_wJICRWUYGH5723e3OEkMdA49HHX3StgNM34wEELfoL/pub?gid=981506514&single=true&output=csv';
 
-        let totalCost = 0;
-        let totalSubsidies = 0;
-        const tbody = document.getElementById('expense-rows');
-        tbody.innerHTML = '';
+function loadExpenses() {
+  Papa.parse(sheetCsvUrl, {
+    download: true,
+    header: true,
+    skipEmptyLines: true,
+    complete: function(results) {
+      const expenses = results.data.map((row, index) => ({
+        id: index + 1,
+        dateAdded: row['Timestamp'] ? row['Timestamp'].split(' ')[0] : '',
+        description: row['Expense Description'],
+        category: row['Category'],
+        amountAUD: parseFloat(row['Total Amount (AUD)']) || 0,
+        paidBy: row['Paid By'],
+        subsidyAUD: parseFloat(row['Leader Subsidy (AUD)']) || 0,
+        splitRule: row['Split Rule']
+      }));
 
-        expenses.forEach(item => {
-          totalCost += item.amountAUD;
-          totalSubsidies += (item.subsidyAUD || 0);
-
-          const tr = document.createElement('tr');
-          tr.innerHTML = `
-            <td>${item.dateAdded || '-'}</td>
-            <td><strong>${item.description}</strong></td>
-            <td>${item.category}</td>
-            <td>$${item.amountAUD.toLocaleString()}</td>
-            <td>${item.paidBy}</td>
-            <td><span class="badge">${item.splitRule}</span></td>
-          `;
-          tbody.appendChild(tr);
-        });
-
-        document.getElementById('total-trip-cost').textContent = `$${totalCost.toLocaleString()} AUD`;
-        document.getElementById('total-subsidies').textContent = `$${totalSubsidies.toLocaleString()} AUD`;
-      } catch (err) {
-        document.getElementById('expense-rows').innerHTML = `<tr><td colspan="6">No expenses logged yet or error loading data.</td></tr>`;
-      }
+      // Call your existing rendering function
+      renderFinancials(expenses);
     }
+  });
+}
 
-    document.addEventListener('DOMContentLoaded', loadExpenses);
+document.addEventListener('DOMContentLoaded', loadExpenses);
   </script>
 </body>
 </html>
