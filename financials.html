@@ -68,32 +68,110 @@
   </main>
 
   <script>
-const sheetCsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ8gWbAmXFbhHzS0OGwBxS8YTPNJu1SUfsZk_wJICRWUYGH5723e3OEkMdA49HHX3StgNM34wEELfoL/pub?gid=981506514&single=true&output=csv';
 
-function loadExpenses() {
-  Papa.parse(sheetCsvUrl, {
+// Replace with your published Google Sheet CSV URL
+const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSf714Z78cxzDIMT8nJr1c8NcHUHzuliPIAuHZOCXmVXkiLSzA/viewform?usp=publish-editor';
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Check if we are on the financials page (table exists)
+  if (document.getElementById('expense-table-body')) {
+    loadExpensesFromCSV();
+  }
+});
+
+function loadExpensesFromCSV() {
+  Papa.parse(GOOGLE_SHEET_CSV_URL, {
     download: true,
     header: true,
     skipEmptyLines: true,
     complete: function(results) {
-      const expenses = results.data.map((row, index) => ({
-        id: index + 1,
-        dateAdded: row['Timestamp'] ? row['Timestamp'].split(' ')[0] : '',
-        description: row['Expense Description'],
-        category: row['Category'],
-        amountAUD: parseFloat(row['Total Amount (AUD)']) || 0,
-        paidBy: row['Paid By'],
-        subsidyAUD: parseFloat(row['Leader Subsidy (AUD)']) || 0,
-        splitRule: row['Split Rule']
-      }));
-
-      // Call your existing rendering function
-      renderFinancials(expenses);
+      if (results.data && results.data.length > 0) {
+        processAndRenderExpenses(results.data);
+      } else {
+        showEmptyTableState('No expenses recorded yet.');
+      }
+    },
+    error: function(err) {
+      console.error('Error loading CSV:', err);
+      showEmptyTableState('Failed to load expenses. Please check the CSV link.');
     }
   });
 }
 
-document.addEventListener('DOMContentLoaded', loadExpenses);
-  </script>
+function processAndRenderExpenses(rows) {
+  const tableBody = document.getElementById('expense-table-body');
+  tableBody.innerHTML = ''; // Clear "Loading expenses..."
+
+  let totalTripSpend = 0;
+  let davePaidTotal = 0;
+  let rider2OwedTotal = 0;
+  let rider3OwedTotal = 0;
+
+  rows.forEach(row => {
+    // Extract headers (handles Google Forms column titles)
+    const timestamp = row['Timestamp'] || row['Date'] || '';
+    const date = timestamp ? timestamp.split(' ')[0] : '-';
+    const description = row['Expense Description'] || row['Description'] || '-';
+    const category = row['Category'] || 'Misc';
+    const amount = parseFloat(row['Total Amount (AUD)']) || parseFloat(row['Amount']) || 0;
+    const paidBy = row['Paid By'] || 'Dave';
+    const subsidy = parseFloat(row['Leader Subsidy (AUD)']) || parseFloat(row['Subsidy']) || 0;
+    const splitRule = row['Split Rule'] || 'Equal 3-Way Split';
+
+    // Math calculations
+    totalTripSpend += amount;
+
+    if (paidBy.toLowerCase().includes('dave')) {
+      davePaidTotal += amount;
+    }
+
+    // Balance calculations per rider
+    const netAmountToSplit = Math.max(0, amount - subsidy);
+    
+    if (splitRule.toLowerCase().includes('equal 3-way') || splitRule.toLowerCase().includes('equal')) {
+      const perRiderShare = netAmountToSplit / 3;
+      if (!paidBy.toLowerCase().includes('rider 2')) rider2OwedTotal += perRiderShare;
+      if (!paidBy.toLowerCase().includes('rider 3')) rider3OwedTotal += perRiderShare;
+    } else if (splitRule.toLowerCase().includes('subsidized') || splitRule.toLowerCase().includes('custom')) {
+      // 50/50 split among Rider 2 & 3 after leader subsidy
+      const perRiderShare = netAmountToSplit / 2;
+      rider2OwedTotal += perRiderShare;
+      rider3OwedTotal += perRiderShare;
+    }
+
+    // Create Table Row
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${date}</td>
+      <td><strong>${description}</strong></td>
+      <td><span class="badge category-${category.toLowerCase().replace(/[^a-z0-9]/g, '')}">${category}</span></td>
+      <td>$${amount.toFixed(2)}</td>
+      <td>${paidBy}</td>
+      <td>${subsidy > 0 ? `$${subsidy.toFixed(2)}` : '-'}</td>
+      <td><small>${splitRule}</small></td>
+    `;
+    tableBody.appendChild(tr);
+  });
+
+  // Update Summary Cards
+  updateSummaryElement('total-spend', `$${totalTripSpend.toFixed(2)} AUD`);
+  updateSummaryElement('dave-paid', `$${davePaidTotal.toFixed(2)} AUD`);
+  updateSummaryElement('rider2-owed', `$${rider2OwedTotal.toFixed(2)} AUD`);
+  updateSummaryElement('rider3-owed', `$${rider3OwedTotal.toFixed(2)} AUD`);
+}
+
+function updateSummaryElement(id, textContent) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = textContent;
+}
+
+function showEmptyTableState(message) {
+  const tableBody = document.getElementById('expense-table-body');
+  if (tableBody) {
+    tableBody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding: 20px; color: #9ca3af;">${message}</td></tr>`;
+  }
+}
+
+</script>
 </body>
 </html>
