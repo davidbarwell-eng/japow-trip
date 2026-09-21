@@ -159,7 +159,7 @@ function processAndRenderExpenses(rows) {
     // Take the subsidy off the top first
     const netAmountToSplit = Math.max(0, amount - subsidy);
 
-    if (splitRuleStr.includes('deposit') || splitRuleStr.includes('payment') || categoryStr.includes('deposit')) {
+    if (splitRuleStr.includes('deposit') || splitRuleStr.includes('payment')) {
       // DEPOSIT / PAYMENT RULE:
       // Always subtract the positive amount directly from that specific rider's share total
       if (paidByStr.includes('rider 2') || paidByStr.includes('mikayla')) {
