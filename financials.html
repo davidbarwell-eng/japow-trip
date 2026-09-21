@@ -41,15 +41,15 @@
           <h2 id="total-spend">$0.00 AUD</h2>
         </div>
         <div class="summary-card">
-          <span>Dave Paid Total</span>
+          <span>Dave's Paid Total</span>
           <h2 id="dave-paid" class="discount-text">$0.00 AUD</h2>
         </div>
         <div class="summary-card">
-          <span>Rider 2 Balance</span>
+          <span>Mikayla's Balance</span>
           <h2 id="rider2-owed">$0.00 AUD</h2>
         </div>
         <div class="summary-card">
-          <span>Rider 3 Balance</span>
+          <span>Teaghan's Balance</span>
           <h2 id="rider3-owed">$0.00 AUD</h2>
         </div>
       </div>
@@ -118,8 +118,8 @@ function processAndRenderExpenses(rows) {
   let rider3PaidTotal = 0;
 
   let rider1ShareTotal = 0; // Dave's share
-  let rider2ShareTotal = 0; // Rider 2's share
-  let rider3ShareTotal = 0; // Rider 3's share
+  let rider2ShareTotal = 0; // Mikayla's share
+  let rider3ShareTotal = 0; // Teaghan's share
 
   rows.forEach(row => {
     // Extract values matching Google Form/Sheet column names
@@ -147,9 +147,9 @@ function processAndRenderExpenses(rows) {
     const paidByStr = String(paidBy).toLowerCase();
     if (paidByStr.includes('dave') || paidByStr.includes('rider 1')) {
       davePaidTotal += amount;
-    } else if (paidByStr.includes('rider 2')) {
+    } else if (paidByStr.includes('rider 2') || paidByStr.includes('mikayla')) {
       rider2PaidTotal += amount;
-    } else if (paidByStr.includes('rider 3')) {
+    } else if (paidByStr.includes('rider 3') || paidByStr.includes('teaghan')) {
       rider3PaidTotal += amount;
     }
 
