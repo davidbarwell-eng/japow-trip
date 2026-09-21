@@ -164,12 +164,11 @@ function processAndRenderExpenses(rows) {
       // Always subtract the positive amount directly from that specific rider's share total
       if (paidByStr.includes('rider 2') || paidByStr.includes('mikayla')) {
         rider2ShareTotal -= positiveAmount;
-      } else if (paidByStr.includes('rider 3') || paidByStr.includes('teaghan') {
+      } else if (paidByStr.includes('rider 3') || paidByStr.includes('teaghan')) {
         rider3ShareTotal -= positiveAmount;
       } else {
         rider1ShareTotal -= positiveAmount;
       }
-
     } else if (splitRuleStr.includes('subsidised')) {
       // Rule 1: Take subsidy off the top, then divide net amount by 3 for all riders
       const perRiderShare = netAmountToSplit / 3;
