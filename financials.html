@@ -114,47 +114,65 @@ function processAndRenderExpenses(rows) {
 
   let totalTripSpend = 0;
   let davePaidTotal = 0;
-  let rider2OwedTotal = 0;
-  let rider3OwedTotal = 0;
+  let rider2PaidTotal = 0;
+  let rider3PaidTotal = 0;
+
+  let rider1ShareTotal = 0; // Dave's share
+  let rider2ShareTotal = 0; // Rider 2's share
+  let rider3ShareTotal = 0; // Rider 3's share
 
   rows.forEach(row => {
-    // Extract headers (handles Google Forms column titles)
+    // Extract values matching Google Form/Sheet column names
     const timestamp = row['Timestamp'] || row['Date'] || '';
     const date = timestamp ? timestamp.split(' ')[0] : '-';
     const description = row['Expense Description'] || row['Description'] || '-';
     const category = row['Category'] || 'Misc';
-    const amount = parseFloat(row['Total Amount']) || parseFloat(row['Amount']) || 0;
+
+    // Helper to clean currency strings like "$1,250.00"
+    const parseNum = (val) => {
+      if (!val) return 0;
+      const cleaned = String(val).replace(/[^0-9.-]+/g, '');
+      const parsed = parseFloat(cleaned);
+      return isNaN(parsed) ? 0 : parsed;
+    };
+
+    const amount = parseNum(row['Total Amount'] || row['Amount']);
+    const subsidy = parseNum(row['Leader Subsidy'] || row['Subsidy']);
     const paidBy = row['Paid By'] || 'Dave';
-    const subsidy = parseFloat(row['Leader Subsidy']) || parseFloat(row['Subsidy']) || 0;
     const splitRule = row['Split Rule'] || 'Equal 3-Way Split';
 
-    // Math calculations
     totalTripSpend += amount;
 
-    if (paidBy.toLowerCase().includes('dave')) {
+    // 1. Track Payments Made by Each Person
+    const paidByStr = String(paidBy).toLowerCase();
+    if (paidByStr.includes('dave') || paidByStr.includes('rider 1')) {
       davePaidTotal += amount;
+    } else if (paidByStr.includes('rider 2')) {
+      rider2PaidTotal += amount;
+    } else if (paidByStr.includes('rider 3')) {
+      rider3PaidTotal += amount;
     }
 
-    // Balance calculations per rider
-    const paidByStr = String(paidBy || '').toLowerCase();
-    const splitRuleStr = String(splitRule || '').toLowerCase();
+    // 2. Math Calculation per Split Rule
+    const splitRuleStr = String(splitRule).toLowerCase();
     
-    const validAmount = isNaN(amount) ? 0 : amount;
-    const validSubsidy = isNaN(subsidy) ? 0 : subsidy;
-    const netAmountToSplit = Math.max(0, validAmount - validSubsidy);
-    
-    if (splitRuleStr.includes('equal 3-way') || splitRuleStr.includes('equal')) {
+    // Take the subsidy off the top first
+    const netAmountToSplit = Math.max(0, amount - subsidy);
+
+    if (splitRuleStr.includes('subsidised') || splitRuleStr.includes('equal')) {
+      // Rule 1: Take subsidy off the top, then divide net amount by 3 for all riders
       const perRiderShare = netAmountToSplit / 3;
-      if (!paidByStr.includes('rider 2')) rider2OwedTotal += perRiderShare;
-      if (!paidByStr.includes('rider 3')) rider3OwedTotal += perRiderShare;
-    } else if (splitRuleStr.includes('subsidized') || splitRuleStr.includes('custom')) {
-      // 50/50 split among Rider 2 & 3 after leader subsidy
-      const perRiderShare = netAmountToSplit / 2;
-      rider2OwedTotal += perRiderShare;
-      rider3OwedTotal += perRiderShare;
+      rider1ShareTotal += perRiderShare;
+      rider2ShareTotal += perRiderShare;
+      rider3ShareTotal += perRiderShare;
+    } else if (splitRuleStr.includes('individual') || splitRuleStr.includes('custom')) {
+      // If paid by an individual for themselves only
+      if (paidByStr.includes('rider 2')) rider2ShareTotal += netAmountToSplit;
+      else if (paidByStr.includes('rider 3')) rider3ShareTotal += netAmountToSplit;
+      else rider1ShareTotal += netAmountToSplit;
     }
 
-    // Create Table Row
+    // Append Table Row
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td>${date}</td>
@@ -168,11 +186,15 @@ function processAndRenderExpenses(rows) {
     tableBody.appendChild(tr);
   });
 
+  // 3. Compute Outstanding Balances (Net Owed = Share - Payments Made)
+  const rider2Outstanding = rider2ShareTotal - rider2PaidTotal;
+  const rider3Outstanding = rider3ShareTotal - rider3PaidTotal;
+
   // Update Summary Cards
   updateSummaryElement('total-spend', `$${totalTripSpend.toFixed(2)} AUD`);
   updateSummaryElement('dave-paid', `$${davePaidTotal.toFixed(2)} AUD`);
-  updateSummaryElement('rider2-owed', `$${rider2OwedTotal.toFixed(2)} AUD`);
-  updateSummaryElement('rider3-owed', `$${rider3OwedTotal.toFixed(2)} AUD`);
+  updateSummaryElement('rider2-owed', `$${rider2Outstanding.toFixed(2)} AUD`);
+  updateSummaryElement('rider3-owed', `$${rider3Outstanding.toFixed(2)} AUD`);
 }
 
 function updateSummaryElement(id, textContent) {
