@@ -159,7 +159,7 @@ function processAndRenderExpenses(rows) {
     // Take the subsidy off the top first
     const netAmountToSplit = Math.max(0, amount - subsidy);
 
-    if (splitRuleStr.includes('subsidised') || splitRuleStr.includes('equal')) {
+    if (splitRuleStr.includes('subsidised')) {
       // Rule 1: Take subsidy off the top, then divide net amount by 3 for all riders
       const perRiderShare = netAmountToSplit / 3;
       rider1ShareTotal += perRiderShare;
@@ -170,6 +170,11 @@ function processAndRenderExpenses(rows) {
       if (paidByStr.includes('rider 2')) rider2ShareTotal += netAmountToSplit;
       else if (paidByStr.includes('rider 3')) rider3ShareTotal += netAmountToSplit;
       else rider1ShareTotal += netAmountToSplit;
+    } else if (splitRuleStr.includes('equal')){
+      const perRiderShare = amount / 3;      
+      rider1ShareTotal += perRiderShare;
+      rider2ShareTotal += perRiderShare;
+      rider3ShareTotal += perRiderShare;
     }
 
     // Append Table Row
