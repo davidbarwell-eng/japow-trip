@@ -159,7 +159,7 @@ function processAndRenderExpenses(rows) {
     // Take the subsidy off the top first
     const netAmountToSplit = Math.max(0, amount - subsidy);
 
-    if (splitRuleStr.includes('deposit') || splitRuleStr.includes('payment')) {
+/*    if (splitRuleStr.includes('deposit') || splitRuleStr.includes('payment')) {
       // DEPOSIT / PAYMENT RULE:
       // Always subtract the positive amount directly from that specific rider's share total
       if (paidByStr.includes('rider 2') || paidByStr.includes('mikayla')) {
@@ -169,7 +169,8 @@ function processAndRenderExpenses(rows) {
       } else {
         rider1ShareTotal -= amount;
       }
-    } else if (splitRuleStr.includes('subsidised')) {
+    } else */
+      if (splitRuleStr.includes('subsidised')) {
       // Rule 1: Take subsidy off the top, then divide net amount by 3 for all riders
       const perRiderShare = netAmountToSplit / 3;
       rider1ShareTotal += perRiderShare;
