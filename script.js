@@ -2,40 +2,39 @@
 const hubData = {
   sapporo: {
     region: "Hokkaido",
-    title: "Sapporo / Otaru Hub",
+    title: "Sapporo Hub",
     accommodation: {
       dates: "Jan 6 – Jan 10 (4 Nights)",
-      desc: "Coastal powder base positioned between Otaru Canal and powder resorts like Sapporo Kokusai, Rusutsu, and Asarigawa.",
-      address: "Otaru Station Area, Otaru, Hokkaido 047-0032",
+      desc: "Château Hiragishi in Hiragishi, Toyohira-ku — a quiet residential base on the Namboku subway line, a short drive from Sapporo Kokusai and Jozankei, and a straight run down to Rusutsu.",
+      address: "平岸４条８丁目５−１ シャトーひらぎし, Sapporo, Hokkaido, Japan",
       info: [
-        "Check-in: Jan 6, 2027 (15:00)",
-        "Check-out: Jan 10, 2027 (10:00)",
-        "Parking: 4WD Vehicle slot reserved",
-        "Status: Booking Pending"
+        "Check-in: Jan 6, 2027",
+        "Check-out: Jan 10, 2027",
+        "Status: Booked (Booking.com)"
       ]
     },
     food: [
       {
-        name: "Otaru Sankaku Market (Ramen & Kaisendon)",
-        note: "Famous fresh seafood bowls with uni, crab, and salmon roe right next to Otaru Station.",
-        map: "https://maps.google.com/?q=Otaru+Sankaku+Market"
+        name: "Nijo Market (Kaisendon)",
+        note: "Central Sapporo seafood market — uni, crab, and salmon roe bowls for breakfast before heading to the hill.",
+        map: "https://maps.google.com/?q=Nijo+Market+Sapporo"
       },
       {
-        name: "Akiya Izakaya Otaru",
-        note: "Cozy local izakaya with fresh Hokkaido yakitori and draft Sapporo Classic.",
-        map: "https://maps.google.com/?q=Otaru+Izakaya"
+        name: "Ganso Ramen Yokocho, Susukino",
+        note: "Narrow alley of tiny ramen counters — classic Sapporo miso ramen after a powder day.",
+        map: "https://maps.google.com/?q=Ganso+Ramen+Yokocho+Sapporo"
       }
     ],
     highlights: [
       {
-        name: "Otaru Canal Walk & Snow Lanterns",
-        note: "Historic gas-lit canal walk. Best visited at dusk when lit up against the snow.",
-        map: "https://maps.google.com/?q=Otaru+Canal"
+        name: "Odori Park & Susukino",
+        note: "Downtown Sapporo for winter lights and nightlife, a few stops north on the Namboku line from Hiragishi.",
+        map: "https://maps.google.com/?q=Odori+Park+Sapporo"
       },
       {
-        name: "Yunokawa / Otaru Onsen",
-        note: "Traditional hot spring bath ideal for soaking after riding powder at Rusutsu/Kokusai.",
-        map: "https://maps.google.com/?q=Otaru+Onsen"
+        name: "Jozankei Onsen",
+        note: "Hot spring town on the road to Sapporo Kokusai — ideal soak after riding Kokusai or Rusutsu.",
+        map: "https://maps.google.com/?q=Jozankei+Onsen"
       }
     ]
   },
@@ -225,7 +224,7 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
 
 // Define Base & Mountain Locations
 const locations = [
-  { name: 'Otaru / Sapporo Base', coords: [43.1907, 140.9947], type: 'base', note: 'Leg 1: Jan 6 - Jan 10' },
+  { name: 'Sapporo Base (Hiragishi)', coords: [43.0330, 141.3700], type: 'base', note: 'Leg 1: Jan 6 - Jan 10' },
   { name: 'Sapporo Kokusai', coords: [43.0722, 141.0805], type: 'resort', note: 'Day 2' },
   { name: 'Rusutsu Resort', coords: [42.7483, 140.9038], type: 'resort', note: 'Day 3' },
   { name: 'Asarigawaonsen', coords: [43.1558, 141.0372], type: 'resort', note: 'Day 4' },
@@ -253,8 +252,8 @@ locations.forEach(loc => {
 });
 
   // Draw Route Lines (Car Drives & Shinkansen)
-  const hokkaidoDrive = [[43.1907, 140.9947], [43.0722, 141.0805], [42.7483, 140.9038], [43.1558, 141.0372]];
-  const shinkansenTrain = [[43.1907, 140.9947], [39.7036, 141.1527]];
+  const hokkaidoDrive = [[43.0330, 141.3700], [43.0722, 141.0805], [42.7483, 140.9038], [43.1558, 141.0372]];
+  const shinkansenTrain = [[43.0330, 141.3700], [39.7036, 141.1527]];
   const tohokuDrive = [[39.7036, 141.1527], [39.9983, 140.9703], [39.9008, 140.9572], [39.2106, 140.9103], [38.1642, 140.3975], [37.6047, 140.0211], [35.7138, 139.7772]];
   
   // Blue solid line for driving legs
