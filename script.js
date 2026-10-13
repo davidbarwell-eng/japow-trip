@@ -277,11 +277,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize Leaflet Map
 const map = L.map('map').setView([39.5, 140.5], 6);
 
-// Load CartoDB Dark Matter map tiles
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-  attribution: '&copy; <a href="https://carto.com/">CARTO</a>',
-  subdomains: 'abcd',
-  maxZoom: 19
+// Load Esri Dark Gray Canvas map tiles (no API key required)
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+  attribution: 'Tiles &copy; Esri &mdash; Esri, HERE, Garmin, &copy; OpenStreetMap contributors',
+  maxZoom: 16
+}).addTo(map);
+
+// Place name labels on top of the base tiles
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
+  maxZoom: 16
 }).addTo(map);
 
 // Define Base & Mountain Locations
