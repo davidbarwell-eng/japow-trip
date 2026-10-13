@@ -50,6 +50,23 @@ const hubData = {
         "Check-out: Jan 14, 2027",
         "Transit: ~5 min drive / 25 min walk from Morioka Station",
         "Status: Booked (Booking.com)"
+      ],
+      entry: [
+        {
+          heading: "How to unlock (open) the door",
+          steps: [
+            "Touch the remote lock (black rectangle) on the front door → a number will be displayed and ready for input.",
+            "Enter the front door password, then touch \"✓\" → if correct, the numbers flash green and the door unlocks. If incorrect, the numbers flash orange.",
+            "\"X\" is the cancel button — use it if you make a mistake."
+          ]
+        },
+        {
+          heading: "How to lock (close) the door",
+          steps: [
+            "Touch the remote lock (black rectangle) on the front door → a number will be displayed and ready for input.",
+            "Touch \"✓\" → the numbers flash green and the door locks."
+          ]
+        }
       ]
     },
     food: [
@@ -288,6 +305,24 @@ function openHubDrawer(hubKey) {
     const li = document.createElement("li");
     li.textContent = item;
     accList.appendChild(li);
+  });
+
+  const entrySection = document.getElementById("drawer-entry-section");
+  const entryContainer = document.getElementById("drawer-entry");
+  entryContainer.innerHTML = "";
+  const entry = data.accommodation.entry || [];
+  entrySection.hidden = entry.length === 0;
+  entry.forEach(block => {
+    const heading = document.createElement("p");
+    heading.innerHTML = "<strong></strong>";
+    heading.firstChild.textContent = block.heading;
+    const ol = document.createElement("ol");
+    block.steps.forEach(step => {
+      const li = document.createElement("li");
+      li.textContent = step;
+      ol.appendChild(li);
+    });
+    entryContainer.append(heading, ol);
   });
 
   // 3. Populate Food & Drink Tab
