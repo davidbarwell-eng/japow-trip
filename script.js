@@ -43,13 +43,13 @@ const hubData = {
     title: "Morioka Central Hub",
     accommodation: {
       dates: "Jan 10 – Jan 14 (4 Nights)",
-      desc: "High-speed rail hub with fast access to Appi Kogen, Geto Kogen, and Shimokura.",
-      address: "Morioka Station Front Area, Morioka, Iwate 020-0034",
+      desc: "Central Morioka base in Minami-Odori, near Morioka Castle Site Park and the Nakatsu River, with fast road access to Appi Kogen, Geto Kogen, and Shimokura.",
+      address: "南大通１丁目２−７ 2F, Morioka, Iwate, Japan",
       info: [
-        "Check-in: Jan 10, 2027 (15:00)",
-        "Check-out: Jan 14, 2027 (10:00)",
-        "Transit: Short walk from Shinkansen exit",
-        "Status: Booking Pending"
+        "Check-in: Jan 10, 2027",
+        "Check-out: Jan 14, 2027",
+        "Transit: ~5 min drive / 25 min walk from Morioka Station",
+        "Status: Booked (Booking.com)"
       ]
     },
     food: [
@@ -228,7 +228,7 @@ const locations = [
   { name: 'Sapporo Kokusai', coords: [43.0722, 141.0805], type: 'resort', note: 'Day 2' },
   { name: 'Rusutsu Resort', coords: [42.7483, 140.9038], type: 'resort', note: 'Day 3' },
   { name: 'Asarigawaonsen', coords: [43.1558, 141.0372], type: 'resort', note: 'Day 4' },
-  { name: 'Morioka Hub', coords: [39.7036, 141.1527], type: 'base', note: 'Leg 2: Jan 10 - Jan 14' },
+  { name: 'Morioka Hub', coords: [39.6985, 141.1545], type: 'base', note: 'Leg 2: Jan 10 - Jan 14' },
   { name: 'Appi Kogen', coords: [39.9983, 140.9703], type: 'resort', note: 'Day 6' },
   { name: 'Geto Kogen', coords: [39.2106, 140.9103], type: 'resort', note: 'Day 7' },
   { name: 'Shimokura', coords: [39.9008, 140.9572], type: 'resort', note: 'Day 8' },
@@ -253,8 +253,8 @@ locations.forEach(loc => {
 
   // Draw Route Lines (Car Drives & Shinkansen)
   const hokkaidoDrive = [[43.0330, 141.3700], [43.0722, 141.0805], [42.7483, 140.9038], [43.1558, 141.0372]];
-  const shinkansenTrain = [[43.0330, 141.3700], [39.7036, 141.1527]];
-  const tohokuDrive = [[39.7036, 141.1527], [39.9983, 140.9703], [39.9008, 140.9572], [39.2106, 140.9103], [38.1642, 140.3975], [37.6047, 140.0211], [35.7138, 139.7772]];
+  const shinkansenTrain = [[43.0330, 141.3700], [39.6985, 141.1545]];
+  const tohokuDrive = [[39.6985, 141.1545], [39.9983, 140.9703], [39.9008, 140.9572], [39.2106, 140.9103], [38.1642, 140.3975], [37.6047, 140.0211], [35.7138, 139.7772]];
   
   // Blue solid line for driving legs
   L.polyline(hokkaidoDrive, { color: '#3b82f6', weight: 3, opacity: 0.7 }).addTo(map);
