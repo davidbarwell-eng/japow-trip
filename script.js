@@ -48,7 +48,7 @@ const hubData = {
       info: [
         "Check-in: Jan 10, 2027",
         "Check-out: Jan 14, 2027",
-        "Transit: ~5 min drive / 25 min walk from Morioka Station",
+        "Transit: Morioka Station is ~25 min walk or a short taxi ride",
         "Status: Booked (Booking.com)"
       ],
       entry: [
@@ -79,13 +79,58 @@ const hubData = {
         name: "Pyonpyonsha Station Branch",
         note: "Great Yakiniku & Reimen combo right at Morioka Station.",
         map: "https://maps.google.com/?q=Pyonpyonsha+Morioka"
+      },
+      {
+        name: "Izakaya Sai",
+        note: "The standout, about a minute's walk away. Highly rated by locals and visitors for seasonal small plates and good sake; staff are very welcoming even without a shared language. Book a night ahead — listed hours look limited (closed Sun, Mon and Wed), so check which of our nights it's open.",
+        map: "https://maps.google.com/?q=Izakaya+Sai+Morioka"
+      },
+      {
+        name: "Seizo (Morioka Bus Center)",
+        note: "Izakaya upstairs in the Bus Center with a strong local sake selection. The Bus Center also has a small food hall — an easy option on a tired night.",
+        map: "https://maps.google.com/?q=Morioka+Bus+Center"
+      },
+      {
+        name: "Public & Bar Heim",
+        note: "Small bar a few minutes' walk away, known for whisky and creative cocktails.",
+        map: "https://maps.google.com/?q=Bar+Heim+Morioka"
+      },
+      {
+        name: "ANCHOR (Hachimancho)",
+        note: "Retro late-night bar in Hachimancho with a friendly owner.",
+        map: "https://maps.google.com/?q=ANCHOR+Hachimancho+Morioka"
+      },
+      {
+        name: "Kanto",
+        note: "Cosy izakaya closer to Odori, focused on fish and sake.",
+        map: "https://maps.google.com/?q=Kanto+Izakaya+Morioka"
+      },
+      {
+        name: "Uomusubi",
+        note: "Cosy izakaya closer to Odori, focused on fish and sake.",
+        map: "https://maps.google.com/?q=Uomusubi+Morioka"
+      },
+      {
+        name: "Hachimancho Bar District",
+        note: "Morioka's old-school bar district, a few minutes' walk away: small counter bars, snack bars and izakaya in older buildings around Morioka Hachimangu shrine. Very much the small, traditional style we're after.",
+        map: "https://maps.google.com/?q=Hachimancho+Morioka"
+      },
+      {
+        name: "Odori & Saien",
+        note: "The main dining and bar streets, about a 10–15 minute walk away.",
+        map: "https://maps.google.com/?q=Odori+Morioka"
       }
     ],
     highlights: [
       {
         name: "Morioka Castle Site Park (Iwayama)",
-        note: "Historic park ruins offering panoramic winter views over the city and Mount Iwate.",
+        note: "Historic castle ruins about 5–10 minutes' walk away, with panoramic winter views over the city and Mount Iwate.",
         map: "https://maps.google.com/?q=Morioka+Castle+Site+Park"
+      },
+      {
+        name: "Konyacho & the Nakatsu River",
+        note: "Old merchant streets along the Nakatsu River, close to the stay. A lovely walk in the snow.",
+        map: "https://maps.google.com/?q=Konyacho+Morioka"
       },
       {
         name: "Tsunagi Onsen",
