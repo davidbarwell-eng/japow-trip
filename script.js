@@ -141,16 +141,17 @@ const hubData = {
   },
   zao: {
     region: "Yamagata / Tohoku",
-    title: "Zao Onsen Village Hub",
+    title: "Kaminoyama / Zao Hub",
     accommodation: {
       dates: "Jan 14 – Jan 16 (2 Nights)",
-      desc: "Slope-side Ryokan in a 1,900-year-old hot spring village nestled in Mount Zao.",
-      address: "Zao Onsen Village, Yamagata 990-2301",
+      desc: "Base in the Kaminoyama hot spring town at the foot of Mount Zao, about 30–40 minutes' drive from the Zao Onsen ski area.",
+      address: "Kawasaki 3-8-34, Kaminoyama, Yamagata, Japan",
       info: [
-        "Check-in: Jan 14, 2027 (15:00)",
-        "Check-out: Jan 16, 2027 (10:00)",
-        "Meals: Breakfast & Kaiseki Dinner included",
-        "Onsen: 24h Volcanic Sulfur Bath"
+        "Check-in: Jan 14, 2027",
+        "Check-out: Jan 16, 2027",
+        "Room: Private bathroom",
+        "Payment: Pay on arrival",
+        "Status: Booked (Booking.com)"
       ]
     },
     food: [
@@ -298,6 +299,7 @@ const locations = [
   { name: 'Appi Kogen', coords: [39.9983, 140.9703], type: 'resort', note: 'Day 6' },
   { name: 'Geto Kogen', coords: [39.2106, 140.9103], type: 'resort', note: 'Day 7' },
   { name: 'Shimokura', coords: [39.9008, 140.9572], type: 'resort', note: 'Day 8' },
+  { name: 'Kaminoyama Base (Zao)', coords: [38.1550, 140.2790], type: 'base', note: 'Leg 3: Jan 14 - Jan 16' },
   { name: 'Zao Onsen', coords: [38.1642, 140.3975], type: 'resort', note: 'Leg 3: Days 10 & 11' },
   { name: 'Nekoma Mountain', coords: [37.6047, 140.0211], type: 'resort', note: 'Leg 3: Day 12' },
   { name: 'Tokyo Transit Hub', coords: [35.7138, 139.7772], type: 'base', note: 'Leg 4: Jan 18 - Jan 19' }
@@ -320,7 +322,7 @@ locations.forEach(loc => {
   // Draw Route Lines (Car Drives & Shinkansen)
   const hokkaidoDrive = [[43.0330, 141.3700], [43.0722, 141.0805], [42.7483, 140.9038], [43.1558, 141.0372]];
   const shinkansenTrain = [[43.0330, 141.3700], [39.6985, 141.1545]];
-  const tohokuDrive = [[39.6985, 141.1545], [39.9983, 140.9703], [39.9008, 140.9572], [39.2106, 140.9103], [38.1642, 140.3975], [37.6047, 140.0211], [35.7138, 139.7772]];
+  const tohokuDrive = [[39.6985, 141.1545], [39.9983, 140.9703], [39.9008, 140.9572], [39.2106, 140.9103], [38.1550, 140.2790], [38.1642, 140.3975], [37.6047, 140.0211], [35.7138, 139.7772]];
   
   // Blue solid line for driving legs
   L.polyline(hokkaidoDrive, { color: '#3b82f6', weight: 3, opacity: 0.7 }).addTo(map);
