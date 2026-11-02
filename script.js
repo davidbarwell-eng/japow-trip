@@ -292,6 +292,7 @@ L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_D
 // Define Base & Mountain Locations
 const locations = [
   { name: 'Sapporo Base (Hiragishi)', coords: [43.0330, 141.3700], type: 'base', note: 'Leg 1: Jan 6 - Jan 10' },
+  { name: 'ORIX Sapporo Kita 9-jo (Car #1 drop-off)', coords: [43.0710, 141.3490], type: 'base', note: 'Jan 9 - return by 18:00' },
   { name: 'Sapporo Kokusai', coords: [43.0722, 141.0805], type: 'resort', note: 'Day 2' },
   { name: 'Rusutsu Resort', coords: [42.7483, 140.9038], type: 'resort', note: 'Day 3' },
   { name: 'Asarigawaonsen', coords: [43.1558, 141.0372], type: 'resort', note: 'Day 4' },
@@ -321,7 +322,7 @@ locations.forEach(loc => {
 });
 
   // Draw Route Lines (Car Drives & Flights)
-  const hokkaidoDrive = [[43.0330, 141.3700], [43.0722, 141.0805], [42.7483, 140.9038], [43.1558, 141.0372], [43.0330, 141.3700], [42.7752, 141.6923]];
+  const hokkaidoDrive = [[42.7752, 141.6923], [43.0330, 141.3700], [43.0722, 141.0805], [42.7483, 140.9038], [43.1558, 141.0372], [43.0710, 141.3490]];
   const hokkaidoFlight = [[42.7752, 141.6923], [39.4286, 141.1353]];
   const tohokuDrive = [[39.4286, 141.1353], [39.6985, 141.1545], [39.9983, 140.9703], [39.9008, 140.9572], [39.2106, 140.9103], [38.1550, 140.2790], [38.1642, 140.3975], [37.6047, 140.0211], [37.7544, 140.4590]];
   const onwardToTokyo = [[37.7544, 140.4590], [35.7138, 139.7772]];
