@@ -319,17 +319,17 @@ locations.forEach(loc => {
   marker.bindPopup(`<strong>${loc.name}</strong><br><span style="font-size:0.85rem; color:#9ca3af;">${loc.note}</span>`);
 });
 
-  // Draw Route Lines (Car Drives & Shinkansen)
-  const hokkaidoDrive = [[43.0330, 141.3700], [43.0722, 141.0805], [42.7483, 140.9038], [43.1558, 141.0372]];
-  const shinkansenTrain = [[43.0330, 141.3700], [39.6985, 141.1545]];
-  const tohokuDrive = [[39.6985, 141.1545], [39.9983, 140.9703], [39.9008, 140.9572], [39.2106, 140.9103], [38.1550, 140.2790], [38.1642, 140.3975], [37.6047, 140.0211], [35.7138, 139.7772]];
+  // Draw Route Lines (Car Drives & Flights)
+  const hokkaidoDrive = [[43.0330, 141.3700], [43.0722, 141.0805], [42.7483, 140.9038], [43.1558, 141.0372], [43.0330, 141.3700], [42.7752, 141.6923]];
+  const hokkaidoFlight = [[42.7752, 141.6923], [39.4286, 141.1353]];
+  const tohokuDrive = [[39.4286, 141.1353], [39.6985, 141.1545], [39.9983, 140.9703], [39.9008, 140.9572], [39.2106, 140.9103], [38.1550, 140.2790], [38.1642, 140.3975], [37.6047, 140.0211], [35.7138, 139.7772]];
   
   // Blue solid line for driving legs
   L.polyline(hokkaidoDrive, { color: '#3b82f6', weight: 3, opacity: 0.7 }).addTo(map);
   L.polyline(tohokuDrive, { color: '#3b82f6', weight: 3, opacity: 0.7 }).addTo(map);
   
-  // Dashed line for Shinkansen Train leg
-  L.polyline(shinkansenTrain, { color: '#f59e0b', weight: 3, dashArray: '6, 8', opacity: 0.9 }).addTo(map);
+  // Dashed line for the New Chitose to Hanamaki flight
+  L.polyline(hokkaidoFlight, { color: '#f59e0b', weight: 3, dashArray: '6, 8', opacity: 0.9 }).addTo(map);
 });
 
 
