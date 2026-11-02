@@ -302,6 +302,7 @@ const locations = [
   { name: 'Kaminoyama Base (Zao)', coords: [38.1550, 140.2790], type: 'base', note: 'Leg 3: Jan 14 - Jan 16' },
   { name: 'Zao Onsen', coords: [38.1642, 140.3975], type: 'resort', note: 'Leg 3: Days 10 & 11' },
   { name: 'Nekoma Mountain', coords: [37.6047, 140.0211], type: 'resort', note: 'Leg 3: Day 12' },
+  { name: 'ORIX Fukushima Stn West Exit (Car #2 drop-off)', coords: [37.7544, 140.4590], type: 'base', note: 'Jan 18 - return by 16:00' },
   { name: 'Tokyo Transit Hub', coords: [35.7138, 139.7772], type: 'base', note: 'Leg 4: Jan 18 - Jan 19' }
 ];
 
@@ -322,7 +323,8 @@ locations.forEach(loc => {
   // Draw Route Lines (Car Drives & Flights)
   const hokkaidoDrive = [[43.0330, 141.3700], [43.0722, 141.0805], [42.7483, 140.9038], [43.1558, 141.0372], [43.0330, 141.3700], [42.7752, 141.6923]];
   const hokkaidoFlight = [[42.7752, 141.6923], [39.4286, 141.1353]];
-  const tohokuDrive = [[39.4286, 141.1353], [39.6985, 141.1545], [39.9983, 140.9703], [39.9008, 140.9572], [39.2106, 140.9103], [38.1550, 140.2790], [38.1642, 140.3975], [37.6047, 140.0211], [35.7138, 139.7772]];
+  const tohokuDrive = [[39.4286, 141.1353], [39.6985, 141.1545], [39.9983, 140.9703], [39.9008, 140.9572], [39.2106, 140.9103], [38.1550, 140.2790], [38.1642, 140.3975], [37.6047, 140.0211], [37.7544, 140.4590]];
+  const onwardToTokyo = [[37.7544, 140.4590], [35.7138, 139.7772]];
   
   // Blue solid line for driving legs
   L.polyline(hokkaidoDrive, { color: '#3b82f6', weight: 3, opacity: 0.7 }).addTo(map);
@@ -330,6 +332,9 @@ locations.forEach(loc => {
   
   // Dashed line for the New Chitose to Hanamaki flight
   L.polyline(hokkaidoFlight, { color: '#f59e0b', weight: 3, dashArray: '6, 8', opacity: 0.9 }).addTo(map);
+
+  // Dashed line for the onward trip from the Fukushima car drop-off to Tokyo
+  L.polyline(onwardToTokyo, { color: '#f59e0b', weight: 3, dashArray: '6, 8', opacity: 0.9 }).addTo(map);
 });
 
 
