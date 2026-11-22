@@ -67,10 +67,11 @@
               <th>Paid By</th>
               <th>Subsidy</th>
               <th>Split Rule</th>
+              <th>Payment Status</th>
             </tr>
           </thead>
           <tbody id="expense-table-body">
-            <tr><td colspan="6">Loading expenses...</td></tr>
+            <tr><td colspan="8">Loading expenses...</td></tr>
           </tbody>
         </table>
       </div>
@@ -140,6 +141,16 @@ function processAndRenderExpenses(rows) {
     const subsidy = parseNum(row['Leader Subsidy'] || row['Subsidy']);
     const paidBy = row['Paid By'] || 'Dave';
     const splitRule = row['Split Rule'] || 'Equal 3-Way Split';
+    const paymentStatus = (row['Payment Status'] || '').trim();
+    const paymentStatusLower = paymentStatus.toLowerCase();
+    let paymentStatusHtml = '-';
+    if (paymentStatusLower === 'paid') {
+      paymentStatusHtml = '<span class="badge badge-paid">✓ Paid</span>';
+    } else if (paymentStatusLower === 'not paid') {
+      paymentStatusHtml = '<span class="badge badge-unpaid">Not Paid</span>';
+    } else if (paymentStatus) {
+      paymentStatusHtml = paymentStatus;
+    }
 
     totalTripSpend += amount;
 
@@ -198,6 +209,7 @@ function processAndRenderExpenses(rows) {
       <td>${paidBy}</td>
       <td>${subsidy > 0 ? `$${subsidy.toFixed(2)}` : '-'}</td>
       <td><small>${splitRule}</small></td>
+      <td>${paymentStatusHtml}</td>
     `;
     tableBody.appendChild(tr);
   });
@@ -221,7 +233,7 @@ function updateSummaryElement(id, textContent) {
 function showEmptyTableState(message) {
   const tableBody = document.getElementById('expense-table-body');
   if (tableBody) {
-    tableBody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding: 20px; color: #9ca3af;">${message}</td></tr>`;
+    tableBody.innerHTML = `<tr><td colspan="8" style="text-align:center; padding: 20px; color: #9ca3af;">${message}</td></tr>`;
   }
 }
 
