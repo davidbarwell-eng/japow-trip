@@ -256,16 +256,17 @@ const hubData = {
   },
   tokyo: {
     region: "Kanto / Tokyo",
-    title: "Tokyo City Finale Hub",
+    title: "Tokyo Finale: Ueno",
     accommodation: {
       dates: "Jan 18 – Jan 19 (1 Night)",
-      desc: "Central city transit base with quick direct access to Haneda Airport for the flight home.",
-      address: "Shinjuku / Ginza / Ueno Area, Tokyo",
+      desc: "Centurion Hotel & Spa Ueno Station: a city hotel with a spa, near Ueno Station. Keisei Ueno Station has the Skyliner straight to Narita for the flight home.",
+      address: "Ueno 6-8-16, Taito-ku, Tokyo, Japan",
       info: [
-        "Check-in: Jan 18, 2027 (15:00)",
-        "Check-out: Jan 19, 2027 (10:00)",
-        "Airport Transit: ~30 mins via Tokyo Monorail / Keikyu Line to HND",
-        "Status: Booking Pending"
+        "Check-in: Mon Jan 18, 2027 (15:00 – 00:00)",
+        "Check-out: Tue Jan 19, 2027 (until 11:00)",
+        "Booking: 3 adults, 1 night, 1 room",
+        "Airport Transit: Keisei Skyliner from Keisei Ueno to Narita (NRT)",
+        "Status: Booked & Paid (Booking.com)"
       ]
     },
     food: [
@@ -345,7 +346,7 @@ const locations = [
   { name: 'Aizu-Wakamatsu Base (Nekoma)', coords: [37.4930, 139.9300], type: 'base', note: 'Leg 3: Jan 16 - Jan 18' },
   { name: 'Nekoma Mountain', coords: [37.6047, 140.0211], type: 'resort', note: 'Leg 3: Day 12' },
   { name: 'ORIX Fukushima Stn West Exit (Car #2 drop-off)', coords: [37.7544, 140.4590], type: 'base', note: 'Jan 18 - return by 16:00' },
-  { name: 'Tokyo Transit Hub', coords: [35.7138, 139.7772], type: 'base', note: 'Leg 4: Jan 18 - Jan 19' }
+  { name: 'Centurion Hotel & Spa Ueno Station', coords: [35.7120, 139.7765], type: 'base', note: 'Leg 4: Jan 18 - Jan 19' }
 ];
 
 // Add Markers
