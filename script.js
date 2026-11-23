@@ -258,11 +258,11 @@ const hubData = {
     region: "Kanto / Tokyo",
     title: "Tokyo City Finale Hub",
     accommodation: {
-      dates: "Jan 17 – Jan 19 (2 Nights)",
+      dates: "Jan 18 – Jan 19 (1 Night)",
       desc: "Central city transit base with quick direct access to Haneda Airport for the flight home.",
       address: "Shinjuku / Ginza / Ueno Area, Tokyo",
       info: [
-        "Check-in: Jan 17, 2027 (15:00)",
+        "Check-in: Jan 18, 2027 (15:00)",
         "Check-out: Jan 19, 2027 (10:00)",
         "Airport Transit: ~30 mins via Tokyo Monorail / Keikyu Line to HND",
         "Status: Booking Pending"
