@@ -445,11 +445,16 @@
         <!-- Accommodation: Aizu / Bandai Base -->
         <div class="stay-card">
           <div class="stay-info">
-            <span class="stay-dates">🏔️ Lakeside Base • Jan 16 – Jan 17 (1 Night)</span>
-            <h4 class="stay-title">Aizu / Urabandai Base Hub</h4>
-            <p class="stay-details">Check-in: Jan 16 | <span class="badge badge-pending">Pending Booking</span> | 15 Mins to Nekoma Mountain</p>
+            <span class="stay-dates">🏯 Base Stay • Jan 16 – Jan 18 (2 Nights)</span>
+            <h4 class="stay-title">Aizu-Wakamatsu Base (for Nekoma)</h4>
+            <p class="stay-details">📍 1-5-11 Chuo, Aizu-Wakamatsu, Fukushima (中央1丁目5番11号)</p>
+            <p class="stay-details">Check-in: Jan 16, 15:00 | Check-out: Jan 18, 10:00 | <span class="badge badge-booked">Booked</span> | Whole house, 2 bedrooms, parking</p>
           </div>
-          <button onclick="openHubDrawer('aizu')" class="hub-btn">View Hub Info ↗</button>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=%E7%A6%8F%E5%B3%B6%E7%9C%8C%E4%BC%9A%E6%B4%A5%E8%8B%A5%E6%9D%BE%E5%B8%82%E4%B8%AD%E5%A4%AE1-5-11" target="_blank" rel="noopener" class="stay-btn">Map ↗</a>
+            <a href="https://www.airbnb.com.au/rooms/30350461" target="_blank" rel="noopener" class="stay-btn">Listing ↗</a>
+            <button onclick="openHubDrawer('aizu')" class="hub-btn">View Hub Info ↗</button>
+          </div>
         </div>
         
         <div class="day-card">
@@ -458,7 +463,7 @@
                 <span class="day-date">Jan 17</span>
             </div>
             <strong>Nekoma Mountain <span class="tag offbeat">Local Microclimate</span></strong>
-            <p>1-hour morning drive south into the Aizu region. North-facing resort with super light snow and brilliant lift-accessed sidecountry.</p>
+            <p>Roughly an hour's drive north from our Aizu-Wakamatsu base. North-facing resort with super light snow and brilliant lift-accessed sidecountry.</p>
                         <!-- snow and weather widget-->
             <div class="snow-widget" data-lat="37.6047" data-lon="140.0211">
               <div class="snow-widget-header">❄️ Live Mountain Conditions</div>
@@ -489,7 +494,7 @@
                 <span class="day-date">Jan 18</span>
             </div>
             <strong>The Road to Tokyo</strong>
-            <p>Drive to Fukushima and drop Car #2 at ORIX Fukushima Station West Exit by 16:00 (refuel first). Continue on to Tokyo for a massive final night of Izakayas, craft beer, and sushi.</p>
+            <p>Check out of the Aizu-Wakamatsu house by 10:00, then drive to Fukushima and drop Car #2 at ORIX Fukushima Station West Exit by 16:00 (refuel first). Continue on to Tokyo for a massive final night of Izakayas, craft beer, and sushi.</p>
         </div>
 
         <!-- Accommodation: Tokyo Transit Hotel -->
@@ -705,6 +710,11 @@
                     <h4>🚪 Building Entry</h4>
                     <div id="drawer-entry" style="font-size: 0.9rem;"></div>
                 </div>
+
+                <div id="drawer-directions-section" class="drawer-section" hidden>
+                    <h4>🧭 Getting There</h4>
+                    <div id="drawer-directions" style="font-size: 0.9rem;"></div>
+                </div>
             </div>
 
             <!-- TAB 2: FOOD & DRINK -->
@@ -722,6 +732,6 @@
     </aside>
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <script src="script.js"></script>
+    <script src="script.js?v=20261123"></script>
 </body>
 </html>

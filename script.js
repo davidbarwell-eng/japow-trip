@@ -176,16 +176,57 @@ const hubData = {
   },
   aizu: {
     region: "Fukushima / Tohoku",
-    title: "Aizu / Urabandai Hub",
+    title: "Aizu-Wakamatsu Hub (for Nekoma)",
     accommodation: {
-      dates: "Jan 16 – Jan 17 (1 Night)",
-      desc: "Lake-side base situated right at the foot of Mount Bandai for fast early-morning tracks at Nekoma Mountain.",
-      address: "Urabandai / Aizu-Wakamatsu, Fukushima 966-0401",
+      dates: "Jan 16 – Jan 18 (2 Nights)",
+      desc: "Aizu Nekura (會津寝蔵) — a converted kura (storehouse) in a traditional house, rented whole, in central Aizu-Wakamatsu. Two bedrooms, sleeps up to 8, with several parking spaces. The host also offers station pick-up.",
+      address: "中央1丁目5番11号, 会津若松市, 福島県 965-0037 (1-5-11 Chuo, Aizu-Wakamatsu, Fukushima 965-0037)",
       info: [
-        "Check-in: Jan 16, 2027 (15:00)",
-        "Check-out: Jan 17, 2027 (10:00)",
-        "Distance to Slopes: 15 mins to Nekoma Mountain",
-        "Status: Booking Pending"
+        "Check-in: Sat Jan 16, 2027 (15:00)",
+        "Check-out: Mon Jan 18, 2027 (10:00)",
+        "Guests: 3",
+        "Host: Saito (message via Airbnb)",
+        "Paid: $250.18 AUD",
+        "Status: Booked (Airbnb, HMT9PXXND8)"
+      ],
+      directions: [
+        {
+          heading: "By car",
+          steps: [
+            "For the car GPS, enter the phone number of the izakaya next door, Campana: 0242-22-7171. Japanese car navs can search by phone number, which is more reliable than the address.",
+            "Address: 1-5-11 Chuo, Aizu-Wakamatsu, 〒965-0037. (The host wrote 965007, which is missing a digit.)",
+            "From the Aizu-Wakamatsu IC, follow National Route 49 into Aizu-Wakamatsu city, heading toward Aizu-Wakamatsu Station.",
+            "Head south on Chuo-dori (Chuo Street).",
+            "Turn left at Kamio Dental Clinic (神尾歯科医院).",
+            "The house is set back from the street, just before Izakaya Campana."
+          ]
+        },
+        {
+          heading: "From the station",
+          steps: [
+            "Head south on Chuo-dori in the left-hand lane and go past Kawachi (カワチ, a drugstore).",
+            "Turn left at Kamio Dental Clinic (神尾歯科医院).",
+            "The house is set back from the street, just before Izakaya Campana."
+          ]
+        },
+        {
+          heading: "車 (host's original)",
+          steps: [
+            "ナビは、隣の居酒屋カンパナの電話0242-22-7171",
+            "〒965007会津若松市中央1-5-11",
+            "会津若松インター、国道49号線から、会津若松市内、会津若松駅方面へ",
+            "中央通り南下",
+            "神尾歯科医院左折",
+            "居酒屋カンパナ手前、奥"
+          ]
+        },
+        {
+          heading: "駅から (host's original)",
+          steps: [
+            "中央通り左側通行で、南下し、カワチを過ぎて、神尾歯科医院左折",
+            "居酒屋カンパナ手前奥"
+          ]
+        }
       ]
     },
     food: [
@@ -301,6 +342,7 @@ const locations = [
   { name: 'Shimokura', coords: [39.9008, 140.9572], type: 'resort', note: 'Day 8' },
   { name: 'Kaminoyama Base (Zao)', coords: [38.1550, 140.2790], type: 'base', note: 'Leg 3: Jan 14 - Jan 16' },
   { name: 'Zao Onsen', coords: [38.1642, 140.3975], type: 'resort', note: 'Leg 3: Days 10 & 11' },
+  { name: 'Aizu-Wakamatsu Base (Nekoma)', coords: [37.4930, 139.9300], type: 'base', note: 'Leg 3: Jan 16 - Jan 18' },
   { name: 'Nekoma Mountain', coords: [37.6047, 140.0211], type: 'resort', note: 'Leg 3: Day 12' },
   { name: 'ORIX Fukushima Stn West Exit (Car #2 drop-off)', coords: [37.7544, 140.4590], type: 'base', note: 'Jan 18 - return by 16:00' },
   { name: 'Tokyo Transit Hub', coords: [35.7138, 139.7772], type: 'base', note: 'Leg 4: Jan 18 - Jan 19' }
@@ -323,7 +365,7 @@ locations.forEach(loc => {
   // Draw Route Lines (Car Drives & Flights)
   const hokkaidoDrive = [[42.7752, 141.6923], [43.0330, 141.3700], [43.0722, 141.0805], [42.7483, 140.9038], [43.1558, 141.0372], [43.0330, 141.3700], [42.7752, 141.6923]];
   const hokkaidoFlight = [[42.7752, 141.6923], [39.4286, 141.1353]];
-  const tohokuDrive = [[39.4286, 141.1353], [39.6985, 141.1545], [39.9983, 140.9703], [39.9008, 140.9572], [39.2106, 140.9103], [38.1550, 140.2790], [38.1642, 140.3975], [37.6047, 140.0211], [37.7544, 140.4590]];
+  const tohokuDrive = [[39.4286, 141.1353], [39.6985, 141.1545], [39.9983, 140.9703], [39.9008, 140.9572], [39.2106, 140.9103], [38.1550, 140.2790], [38.1642, 140.3975], [37.4930, 139.9300], [37.6047, 140.0211], [37.4930, 139.9300], [37.7544, 140.4590]];
   const onwardToTokyo = [[37.7544, 140.4590], [35.7138, 139.7772]];
   
   // Blue solid line for driving legs
@@ -341,6 +383,27 @@ locations.forEach(loc => {
 // ==========================================
 // DRAWER & TAB CONTROL FUNCTIONS
 // ==========================================
+
+// Renders [{ heading, steps: [] }] blocks as headed ordered lists; hides the section when empty.
+function renderStepBlocks(sectionId, containerId, blocks) {
+  const section = document.getElementById(sectionId);
+  const container = document.getElementById(containerId);
+  container.innerHTML = "";
+  const list = blocks || [];
+  section.hidden = list.length === 0;
+  list.forEach(block => {
+    const heading = document.createElement("p");
+    heading.innerHTML = "<strong></strong>";
+    heading.firstChild.textContent = block.heading;
+    const ol = document.createElement("ol");
+    block.steps.forEach(step => {
+      const li = document.createElement("li");
+      li.textContent = step;
+      ol.appendChild(li);
+    });
+    container.append(heading, ol);
+  });
+}
 
 function openHubDrawer(hubKey) {
   const data = hubData[hubKey];
@@ -363,23 +426,8 @@ function openHubDrawer(hubKey) {
     accList.appendChild(li);
   });
 
-  const entrySection = document.getElementById("drawer-entry-section");
-  const entryContainer = document.getElementById("drawer-entry");
-  entryContainer.innerHTML = "";
-  const entry = data.accommodation.entry || [];
-  entrySection.hidden = entry.length === 0;
-  entry.forEach(block => {
-    const heading = document.createElement("p");
-    heading.innerHTML = "<strong></strong>";
-    heading.firstChild.textContent = block.heading;
-    const ol = document.createElement("ol");
-    block.steps.forEach(step => {
-      const li = document.createElement("li");
-      li.textContent = step;
-      ol.appendChild(li);
-    });
-    entryContainer.append(heading, ol);
-  });
+  renderStepBlocks("drawer-entry-section", "drawer-entry", data.accommodation.entry);
+  renderStepBlocks("drawer-directions-section", "drawer-directions", data.accommodation.directions);
 
   // 3. Populate Food & Drink Tab
   const foodContainer = document.getElementById("drawer-food-list");
